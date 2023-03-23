@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "f29b62e6-888b-4b27-88d6-c48a7332e3e0",
+		"name": "API Demo All Streaming",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12048497"
+	},
+	"item": [
+		{
+			"name": "GetAllTipoCuenta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tipocuenta",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tipocuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTipoCuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Paramount Plus\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tipocuenta",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tipocuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTipoCuentaById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Star plus\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tipocuenta/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tipocuenta",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllCuenta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Paramount+\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cuenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"cuenta6@AllStreaming.cl\",\r\n    \"estado\": \"Disponible\",\r\n    \"tipoCuenta\":{\r\n        \"id\":1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cuenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cuenta"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
