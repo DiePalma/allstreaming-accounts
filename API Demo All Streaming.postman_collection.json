@@ -8,9 +8,21 @@
 	"item": [
 		{
 			"name": "GetAllTipoCuenta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"nombre\": \"Honolulu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "localhost:8080/tipocuenta",
 					"host": [
@@ -137,6 +149,111 @@
 					"port": "8080",
 					"path": [
 						"cuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTipoCuenta(example id: 5)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"nombre\": \"Honolulu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tipocuenta/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tipocuenta",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCuenta(example id: 4)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cuenta/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cuenta",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTipoCuenta(example id: 2)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tipocuenta/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tipocuenta",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCuenta(example id: 1)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"correo\": \"cuenta2@AllStreaming.cl\",\r\n    \"estado\": \"En uso\",\r\n    \"tipoCuenta\":{\r\n        \"id\":3\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cuenta/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cuenta",
+						"2"
 					]
 				}
 			},

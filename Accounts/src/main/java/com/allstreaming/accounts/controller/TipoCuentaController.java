@@ -36,7 +36,7 @@ public class TipoCuentaController {
 		return tipoCuentaRepository.findAll();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/ver/{id}")
 	public TipoCuenta getTipoCuenta(@PathVariable Long id) {
 		return tipoCuentaRepository.findById(id).orElseThrow(RuntimeException::new);
 	}
@@ -44,7 +44,7 @@ public class TipoCuentaController {
 	@PostMapping
     public ResponseEntity<TipoCuenta> createTipoCuenta(@RequestBody TipoCuenta tipoCuenta) throws URISyntaxException {
         TipoCuenta savedTipo = tipoCuentaRepository.save(tipoCuenta);
-        return ResponseEntity.created(new URI("/tiposCuenta/" + savedTipo.getId())).body(savedTipo);
+        return ResponseEntity.created(new URI("/tipoCuenta/" + savedTipo.getId())).body(savedTipo);
     }
 
     @PutMapping("/{id}")

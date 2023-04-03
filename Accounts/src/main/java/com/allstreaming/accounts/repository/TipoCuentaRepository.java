@@ -11,7 +11,8 @@ public interface TipoCuentaRepository extends JpaRepository<TipoCuenta, Long>{
 
 	/* Utilizando una Query desde Repository e implementandola en un Service, se puede realizar la consulta SQL
 	 * correspondiente a la búsqueda de cuenta por tipo que estén disponibles.
-	@Query(value= "select * from tipoCuenta t inner join t.cuenta c where c ", nativeQuery= true)
+	 * 
+	@Query("SELECT tipo.id as idTipo, c.correo as cuenta FROM TipoCuenta tipo JOIN tipo.Cuenta c WHERE c.estado = 'Disponible'")
 	List<TipoCuenta> filtraCuentasDisponibles();
 	*/
 }
