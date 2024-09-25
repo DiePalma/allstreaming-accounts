@@ -44,7 +44,7 @@ function App() {
       la librería necesaria  */}
     <div className='UpperBar'>  
     
-     <button className='Button' onClick={handleCuentas}><span>Cuentas</span></button>
+     <button className='Button' onClick={handleCuentas}>Cuentas</button>
      <button className='Button' onClick={handleTipos}>Servicios de Streaming</button>
      <button className='Button' onClick={handleSuscripciones}>Suscripciones</button>
      </div>

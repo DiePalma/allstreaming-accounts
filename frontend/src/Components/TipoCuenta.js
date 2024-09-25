@@ -58,7 +58,8 @@ useEffect(()=>{
       <h2>Servicios de Streaming disponibles</h2>
       <button className= "add" onClick={()=>openModal([], 'nuevo') }>Nuevo</button>
       </>
-      <div className="Table">
+      <div className="table-container">
+      <div className="table-wrapper">
       <table border="1">
         <thead>
           <tr>
@@ -83,6 +84,7 @@ useEffect(()=>{
           })}
         </tbody>
       </table>
+      </div>
       </div>
       <ModalTipoCuenta isOpen={showModal} onClose={closeModal} content={contenido} caso={opcion} onDelete={handleDelete} tipos={tipos} setTipos={setTipos} getTipos={getTipos}/>
     </div>

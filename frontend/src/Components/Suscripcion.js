@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import ModalSuscripcion from "../Modals/ModalSuscripcion";
 import apiSuscripcion, { updateEstado } from "../Api/ApiSuscripcion";
 import apiTipoCuenta from "../Api/ApiTipoCuenta";
@@ -104,7 +105,8 @@ export default function Suscripcion() {
       <h2>Suscripciones</h2>
       <button className="add" onClick={() => openModal([], "nuevo")}>Nueva</button>
       {suscripcionesFiltradas.length > 0 ? (
-        <div className="Table">
+        <div className="table-container" >
+        <div className="table-wrapper">
         <table border="1">
           <thead>
             <tr>
@@ -166,12 +168,16 @@ export default function Suscripcion() {
           </tbody>
         </table>
         </div>
+        </div>
       ) : (
         <p>
           No se encontraron suscripciones que coincidan con los criterios
           solicitados.
+         <br/><button className="Button" style={{background:"#FFFFFF"}}onClick={handleEstadoChange} value={""}>Refrescar</button>
         </p>
+        
       )}
+      
       <ModalSuscripcion
         isOpen={showModal}
         onClose={closeModal}

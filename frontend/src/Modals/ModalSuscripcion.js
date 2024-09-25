@@ -24,19 +24,20 @@ const ModalSuscripcion = ({
   const [tipoCuentaElegido, setTipoCuentaElegido] =useState(null);
   const [cuentaElegida, setCuentaElegida]= useState(null);
   const [cuentaFiltrada, setCuentaFiltrada] =useState([]);
-  
+  const [selected, setSelected]= useState(true);
 
   const [correo, setCorreo] = useState("");
 
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
+     
       const tipoCuenta=tipoCuentaElegido;
       const cuenta=cuentaElegida;
       const estado="Disponible"
       const suscripcion={tipoCuenta, cuenta, estado}
-      //console.log(suscripcion);
-      
+     // console.log(suscripcion);
+   
 
       await createSuscripcion(suscripcion);
 
@@ -47,6 +48,7 @@ const ModalSuscripcion = ({
       console.error("Error creando cuenta ", error);
     }
   };
+
   const handleUpdate = async (e) => {
     console.log(suscripciones);
     e.preventDefault();
@@ -67,9 +69,11 @@ const ModalSuscripcion = ({
     }
   };
   if (!isOpen) return null;
+
   
   const handleTipoCuentaElegido =async(e)=>{
     e.preventDefault();
+    
     const idTipoCuentaSeleccionada= Number(e.target.value);
     
     setSelectorCuenta(idTipoCuentaSeleccionada !=='');
@@ -84,6 +88,7 @@ const ModalSuscripcion = ({
       );
       
     }
+    
     setTipoCuentaElegido(tiposCuenta.find(tiposCuenta=>tiposCuenta.id === idTipoCuentaSeleccionada));
    const cuentasDeTipo= new Set(filtrado.map((sus)=>sus.cuenta.correo))
    let filtroCuentas= cuentas;
@@ -93,10 +98,11 @@ const ModalSuscripcion = ({
 
   };
   const handleCuentaElegida=async(e)=>{
+   
     const idCuentaSeleccionada=Number(e.target.value);
 
     setCuentaElegida(cuentas.find(cuentas=>cuentas.id===idCuentaSeleccionada));
-    
+    setSelected(false);
   }
   const handleClose =()=>{
     setSelectorCuenta(false);
@@ -116,9 +122,9 @@ const ModalSuscripcion = ({
               <h2>Suscribir cuenta a servicio de Streaming</h2>
               <div className="card-body">
                 <form>
-                  <div className="grid-container">
-                    <div>
-                      <label className="form-label">
+                  <div className="subscribe-container">
+                    <div >
+                      <label for="input1" className="form-label" >
                         Seleccione Servicio <br />
                         de Streaming:
                       </label>
@@ -136,19 +142,20 @@ const ModalSuscripcion = ({
                     </div>
                     {selectorCuenta &&(
                     <div>
-                      <label className="form-label">
-                        Seleccione <br />
+                      <label for="input2" className="form-label" >
+                        Seleccione <br/>
                         cuenta:
                       </label>
                       <br />
 
                       {
                         <select id="cuentas" defaultValue={'Seleccione'} onChange={handleCuentaElegida}>
-                          <option value={'Seleccione'}disabled>Seleccione</option>
+                          <option value={'Seleccione'}disabled >Seleccione</option>
                           {cuentaFiltrada.map((cuenta) => (
                             <option key={cuenta.id} value={cuenta.id}>
                               {cuenta.correo}
                             </option>
+
                           ))}
                         </select>
                       }
@@ -156,10 +163,13 @@ const ModalSuscripcion = ({
                     )}
                   </div>
 
-                  <button onClick={handleClose} >Cancelar</button>
+                  <button onClick={handleClose} className="cancel">Cancelar</button>
                   <button
+                    id="button" 
                     className="confirm"
+                    disabled={selected}
                     onClick={(e) => handleCreate(e)}
+                    
                   >
                     Guardar
                   </button>
@@ -195,9 +205,9 @@ const ModalSuscripcion = ({
                     />
                   </div>
 
-                  <button onClick={onClose}>Cancelar</button>
+                  <button onClick={onClose} className="cancel">Cancelar</button>
                   <button
-                    className="btn btn-success"
+                    className="confirm"
                     onClick={(e) => handleUpdate(e)}
                   >
                     Guardar

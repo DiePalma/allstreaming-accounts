@@ -25,7 +25,7 @@ const ModalCuenta = ({
 
       setCuentas([...cuentas, cuenta]);
       await getCuentas();
-      onClose();
+      handleClose();
     } catch (error) {
       console.error("Error creando cuenta ", error);
     }
@@ -41,10 +41,15 @@ const ModalCuenta = ({
       setCuentas(cuentas.map(cuenta => (cuenta.id === cuentaActualizada.id)? cuentaActualizada: cuenta));
       await getCuentas();
       setCorreo("");
-      onClose();
+      handleClose();
     } catch (error) {
       console.error("Error creando cuenta ", error);
     }
+  };
+  const handleClose =()=>{
+    setCorreo("");
+    onClose();
+   
   };
   if (!isOpen) return null;
 
@@ -65,8 +70,8 @@ const ModalCuenta = ({
               <i>Esta acción es permanente</i>
             </p>
             <footer>
-              <button onClick={onClose}>Cancelar</button>
-              <button onClick={() => onDelete(content.id)}>Eliminar</button>
+              <button onClick={onClose} className="cancel">Cancelar</button>
+              <button onClick={() => onDelete(content.id)} className="delete">Eliminar</button>
             </footer>
           </div>
         </div>
@@ -78,7 +83,7 @@ const ModalCuenta = ({
           
           <div className="modal">
             <div className="modal-content">
-              <span className="close" onClick={onClose}>
+              <span className="close" onClick={handleClose}>
                 &times;
               </span>
               <h2>Agregar nueva cuenta de correo</h2>
@@ -99,8 +104,10 @@ const ModalCuenta = ({
                     />
                   </div>
 
-                  <button onClick={onClose}>Cancelar</button>
+                  <button onClick={handleClose}
+                  className="cancel">Cancelar</button>
                   <button
+                    disabled={correo.length===0}
                     className="confirm"
                     onClick={(e) => handleCreate(e)}
                   >
@@ -134,18 +141,22 @@ const ModalCuenta = ({
                       placeholder="cuenta@ejemplo.com"
                       name="correo"
                       className="form-control"
-                      value={correo}
+                      defaultValue={content.correo}
                       onChange={(e) => setCorreo(e.target.value)}
                     />
                   </div>
-
-                  <button onClick={onClose}>Cancelar</button>
+                  
+                  
+                   
+                  <button onClick={onClose}
+                  className="cancel">Cancelar</button>
                   <button
-                    className="btn btn-success"
+                    className="confirm"
                     onClick={(e) => handleUpdate(e)}
                   >
                     Guardar
                   </button>
+                  
                 </form>
               </div>
             </div>

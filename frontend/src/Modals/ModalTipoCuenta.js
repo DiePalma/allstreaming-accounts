@@ -24,7 +24,7 @@ const ModalTipoCuenta = ({
 
       setTipos([...tipos, tipo]);
       await getTipos();
-      onClose();
+      handleClose();
     } catch (error) {
       console.error("Error creando servicio de streaming ", error);
     }
@@ -42,12 +42,16 @@ const ModalTipoCuenta = ({
       );
       await getTipos();
       setNombre("");
-      onClose();
+      handleClose();
     } catch (error) {
       console.error("Error creando cuenta ", error);
     }
   };
- 
+  const handleClose =()=>{
+    setNombre("");
+    onClose();
+   
+  };
   if (!isOpen) return null;
 
   switch (caso) {
@@ -64,8 +68,8 @@ const ModalTipoCuenta = ({
               <i>Esta acción es permanente</i>
             </p>
             <footer>
-              <button onClick={onClose}>Cancelar</button>
-              <button onClick={() => onDelete(content.id)}>Eliminar</button>
+              <button onClick={onClose} className="cancel">Cancelar</button>
+              <button onClick={() => onDelete(content.id)} className="delete">Eliminar</button>
             </footer>
           </div>
         </div>
@@ -75,7 +79,7 @@ const ModalTipoCuenta = ({
         <div>
           <div className="modal">
             <div className="modal-content">
-              <span className="close" onClick={onClose}>
+              <span className="close" onClick={handleClose}>
                 &times;
               </span>
               <h2>Editar {content.nombre}</h2>
@@ -91,12 +95,15 @@ const ModalTipoCuenta = ({
                       placeholder={content.nombre}
                       name="nombre"
                       className="form-control"
-                      value={nombre}
+                      defaultValue={content.nombre}
+                      //value={content.nombre}
                       onChange={(e) => setNombre(e.target.value)}
                     />
+                     
                   </div>
 
-                  <button onClick={onClose}>Cancelar</button>
+                  <button onClick={onClose}
+                  className="cancel">Cancelar</button>
                   <button
                     className="confirm"
                     onClick={(e) => handleUpdate(e)}
@@ -113,7 +120,7 @@ const ModalTipoCuenta = ({
       return (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={onClose}>
+            <span className="close" onClick={handleClose}>
               &times;
             </span>
             <h2>Agregar nuevo servicio de Streaming</h2>
@@ -134,9 +141,11 @@ const ModalTipoCuenta = ({
                   />
                 </div>
 
-                <button onClick={onClose}>Cancelar</button>
+                <button onClick={handleClose}
+                className="cancel">Cancelar</button>
                 <button
-                  className="btn btn-success"
+                  className="confirm"
+                  disabled={nombre.length===0}
                   onClick={(e) => handleCreate(e)}
                 >
                   Guardar

@@ -11,6 +11,8 @@
 }
 .UpperBar{
   background-color: #4286E0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -18,15 +20,21 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
 
 .App-header {
   background-color: #e09c42;
   min-height: 10vh;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  
+  
   font-size: calc(10px + 2vmin);
   color: rgb(0, 0, 0);
 }
@@ -35,11 +43,11 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html{
+  overflow-x: hidden;
+  width: 100vw;
+}
+*{
+  box-sizing: border-box;
+  /* outline: 1px solid red; */
 }

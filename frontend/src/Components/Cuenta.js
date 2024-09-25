@@ -66,7 +66,8 @@ const [opcion, setOpcion] = useState('');
       <h2>Cuentas de AllStreaming existentes</h2>
       <button className="add" onClick={()=>openModal([], 'nuevo') }>Nueva</button>
       </>
-      <div className="Table">
+      <div className="table-container">
+      <div className='table-wrapper'>
       <table border="1" >
         <thead>
           <tr>
@@ -91,6 +92,7 @@ const [opcion, setOpcion] = useState('');
           })}
         </tbody>
       </table>
+      </div>
       </div>
       <ModalCuenta isOpen={showModal} onClose={closeModal} content={contenido} caso={opcion} onDelete={handleDelete} cuentas={cuentas} setCuentas={setCuentas} getCuentas={getCuentas}/>
     </div>
